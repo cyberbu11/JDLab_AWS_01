@@ -34,35 +34,14 @@ jobs:
           REPO_URL: ${{ github.repositoryUrl }}
           GIT_BRANCH:  ${{ github.ref_name }}
           GIT_COMMIT:  ${{ github.sha }}
-          TF_CLI_CONFIG_FILE: fileNamewithHostAndToken
         with:
           # Required by Accurics
           app-id: ${{ secrets.ACCURICS_APP_ID }}
           env-id: ${{ secrets.ACCURICS_ENV_ID }}
-          repo: "https://github.com/cyberbu11/JDLab_AWS_01.git"
+          repo: "https://bitbucket.org/myrepo/reponame.git"
           # Optional args
           plan-args: '-var myvar1=val1 -var myvar2=val2'
-          fail-on-violations: true
+          fail-on-violations: false
           url: "https://cloud.tenable.com/cns"
-          scan-mode: "scan"
+          scan-mode: "plan"
           pipeline: true
-      - name: Display statistics
-        run: '
-            echo "";
-            echo "Environment Name           : ${{ steps.accurics.outputs.env-name }}";
-            echo "Repository                 : ${{ steps.accurics.outputs.repo }}";
-            echo "Violation Count            : ${{ steps.accurics.outputs.num-violations }}";
-            echo "Resource Count             : ${{ steps.accurics.outputs.num-resources }}";
-            echo ""
-            echo "Native Resources           : ${{ steps.accurics.outputs.native }}";
-            echo "Inherited Resources        : ${{ steps.accurics.outputs.inherited }}";
-            echo ""
-            echo "High-Severity Violations   : ${{ steps.accurics.outputs.high }}";
-            echo "Medium-Severity Violations : ${{ steps.accurics.outputs.medium }}";
-            echo "Low-Severity Violations    : ${{ steps.accurics.outputs.low }}";
-            echo ""
-            echo "Drift                      : ${{ steps.accurics.outputs.drift }}";
-            echo "IaC Drift                  : ${{ steps.accurics.outputs.iacdrift }}";
-            echo "Cloud Drift                : ${{ steps.accurics.outputs.clouddrift }}";
-            echo ""
-		  '
