@@ -7,6 +7,10 @@
 # variable "web_instance_type" {
 #   type = string
 # }
+terraform {
+  backend "local" {
+  }
+}
 
 provider "aws" {
   # profile = "my_aws_creds"
