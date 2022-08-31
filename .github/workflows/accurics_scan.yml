@@ -39,8 +39,7 @@ jobs:
           app-id: ${{ secrets.ACCURICS_APP_ID }}
           env-id: ${{ secrets.ACCURICS_ENV_ID }}
           repo: "https://bitbucket.org/myrepo/reponame.git"
-          # Optional args
-          plan-args: '-var myvar1=val1 -var myvar2=val2'
+          # Optional args          
           fail-on-violations: false
           url: "https://cloud.tenable.com/cns"
           scan-mode: "plan"
